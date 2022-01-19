@@ -1,0 +1,22 @@
+{
+    "manifest-version": 2,
+    "name": "Emplenar llocs",
+    "version": 1,
+    "content-scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["/content_script.js"]
+        }
+    ],
+    "browser_action": {
+        "browser_style": true,
+        "default_icon": {
+            "48": "/favicon.ico"
+        },
+        "default_title": "Emplenar llocs",
+        "default_popup": "/popup.html"
+    },
+    "permissions": [
+        "storage"
+    ]
+}
