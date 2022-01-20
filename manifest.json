@@ -3,7 +3,7 @@
     "name": "Emplenar llocs",
     "version": "1.0",
     "content_scripts": [{
-        "matches": ["<all_urls>"],
+        "matches": ["https://appweb.edu.gva.es/*"],
         "js": ["content_script.js"]
     }],
     "browser_action": {
@@ -16,7 +16,9 @@
     },
 
     "permissions": [
-        "storage",
-        "tabs"
+        "https://appweb.edu.gva.es/*",
+        "activeTab",
+        "tabs",
+        "storage"
     ]
 }
