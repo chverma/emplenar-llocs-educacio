@@ -1,0 +1,1 @@
+web-ext run --browser-console --start-url=https://appweb.edu.gva.es/adjudicacio/init.do\?lang\=va\&conv\=202203590
