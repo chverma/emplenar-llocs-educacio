@@ -14,9 +14,12 @@
         "default_title": "Emplenar llocs",
         "default_popup": "popup.html"
     },
-
+    "background": {
+        "scripts": ["background.js"]
+    },
     "permissions": [
         "https://appweb.edu.gva.es/*",
+        "http://decasaalcole.cartodb.com/*",
         "activeTab",
         "tabs",
         "storage"

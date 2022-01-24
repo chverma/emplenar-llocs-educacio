@@ -3,7 +3,7 @@
     "version": "0.0.1",
     "description": "Description",
     "scripts": {
-        "run": "web-ext run --browser-console --start-url=https://appweb.edu.gva.es/adjudicacio/init.do?lang=va&conv=202203590",
+        "run": "web-ext run --browser-console --start-url=https://appweb.edu.gva.es/adjudicacio/init.do?conv=202203590 --firefox-profile=profile --profile-create-if-missing",
         "build": "node scripts/develop"
     },
     "homepage": "https://github.com/chverma/emplenar-llocs-educacio",
