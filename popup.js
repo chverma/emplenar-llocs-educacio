@@ -12,42 +12,26 @@ function checkRequiredInput() {
             }
         };
 
-        chrome.storage.local.set(options)
-        setItem();
-
+        chrome.storage.local.set(options);
+        executeScript();
     } else {
         return false;
     }
 }
 
-function setItem() {
-    let tabID = -1;
+function executeScript() {
     // Querying browser tab
     return chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
-            console.log(tabs)
-            // Executing script
-            return chrome.tabs.executeScript(tabs[0].id, {
-                file: "/fillPlaces.js"
-            });
-        })
-
-    function logTabs(tabs) {
-        tabID = tabs[0].id;
-        console.log("tab: ", tabs[0].id)
-    }
-
-    function onError(error) {
-        console.log(`Error: ${error}`);
-    }
-
-    function onExecuted(result) {
-        console.log(`onExecuted`);
-    }
+        // Executing script
+        return chrome.tabs.executeScript(tabs[0].id, {
+            file: "/fillPlaces.js"
+        });
+    });
 }
 // Run button on click
 document.querySelector('#run_btn').addEventListener('click', (e) => {
     e.preventDefault();
-    return checkRequiredInput()
+    return checkRequiredInput();
 
 });
 

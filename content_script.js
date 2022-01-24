@@ -5,7 +5,7 @@ chrome.storage.onChanged.addListener((changes, area) => {
             `Old value was "${JSON.stringify(oldValue)}", new value is "${JSON.stringify(newValue)}".`
         );
     }
-    console.log("changes: ", changes, area)
+    console.log("changes: ", changes, area);
 });
 
-console.log("content script done")
+console.log("content script done");

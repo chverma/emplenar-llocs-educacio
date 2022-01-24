@@ -5,7 +5,7 @@ function init() {
         var espCode = res.options.espCode;
         var postalCode = res.options.postalCode;
 
-        getAllPlaces(postalCode, espCode, espName)
+        getAllPlaces(postalCode, espCode, espName);
     })
 
 }
@@ -30,8 +30,8 @@ function getAllPlaces(postalCode, espCode, espName) {
         }
     };
     xmlhttp.open('GET', url);
-    xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*')
-    xmlhttp.send()
+    xmlhttp.setRequestHeader('Access-Control-Allow-Origin', '*');
+    xmlhttp.send();
 }
 
 function fillAllPlaces(rows, espCode, espName) {
@@ -41,7 +41,7 @@ function fillAllPlaces(rows, espCode, espName) {
     codeAdded = [];
     for (var elem in rows) {
         var code = rows[elem].codigo.toString()
-        var prefix = code.length < 8 ? '0' : ''
+        var prefix = code.length < 8 ? '0' : '';
 
         place.centre = prefix + code + 'C';
 
@@ -56,20 +56,20 @@ function fillPlace(place, espName) {
     document.querySelector(".afegir").click();
     let formulari_centres = document.querySelector("#formulari_centres");
     let lastPlace = formulari_centres.lastChild;
-    let especialitat = lastPlace.querySelector('input[name="especialitat"')
-    let centre = lastPlace.querySelector('input[name="centre"')
+    let especialitat = lastPlace.querySelector('input[name="especialitat"');
+    let centre = lastPlace.querySelector('input[name="centre"');
     //var jso = document.defaultView.wrappedJSObject; //Access to foreign scripts variables
 
-    centre.value = place.centre
-    centre.classList.add("CENT")
-    let span = document.createElement("span")
+    centre.value = place.centre;
+    centre.classList.add("CENT");
+    let span = document.createElement("span");
 
-    verificarCentro(place.centre, span)
-    span.classList.add('info')
-    centre.parentElement.appendChild(span)
+    verificarCentro(place.centre, span);
+    span.classList.add('info');
+    centre.parentElement.appendChild(span);
 
-    especialitat.value = place.especialitat
-    especialitat.parentElement.lastChild.innerText = espName
+    especialitat.value = place.especialitat;
+    especialitat.parentElement.lastChild.innerText = espName;
 }
 
 function verificarCentro(cod, span) {
@@ -107,6 +107,6 @@ function verificarCentro(cod, span) {
 
 
 
-init()
+init();
 
 console.log("fillPlaces.js done");
