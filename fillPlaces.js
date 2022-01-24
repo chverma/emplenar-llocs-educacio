@@ -70,7 +70,7 @@ function fillPlace(place, espName) {
     centre.parentElement.appendChild(span)
 
     especialitat.value = place.especialitat
-    especialitat.parentElement.lastChild.innerHTML = espName
+    especialitat.parentElement.lastChild.innerText = espName
 }
 
 function verificarCentro(cod, span) {
@@ -84,7 +84,7 @@ function verificarCentro(cod, span) {
                 var doc = parser.parseFromString(xmlhttp.responseText, "application/xml");
                 //console.log(doc.documentElement.children[3].innerHTML)
                 centerName = doc.documentElement.children[3].innerHTML
-                span.innerHTML = centerName
+                span.innerText = centerName
             } else if (xmlhttp.status == 400) {
                 alert('There was an error 400');
             } else {

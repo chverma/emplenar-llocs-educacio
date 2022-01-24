@@ -9,13 +9,16 @@
     "browser_action": {
         "browser_style": true,
         "default_icon": {
-            "48": "/favicon.ico"
+            "48": "/icon.png"
         },
         "default_title": "Emplenar llocs",
         "default_popup": "popup.html"
     },
-    "background": {
-        "scripts": ["background.js"]
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "addon@chverma.com",
+            "strict_min_version": "57.0"
+        }
     },
     "permissions": [
         "https://appweb.edu.gva.es/*",
