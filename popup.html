@@ -8,19 +8,36 @@
         body {
             padding: 1em;
         }
-        
+
         input {
             margin-left: 1em;
+       
+        }
+        label {
+            width: 100%;
         }
     </style>
 </head>
 
 <body>
-    <label>
-            Sepia level
-            <input id="sepia_range" type="range" min="0" max="100" value="0" width="100">
-    </label>
-    <button id="run_btn">Run!</button>
+    <form>
+        <label>
+            Cod. Especialitat
+            <input id="especialitatCode" type="number" placeholder="107" width="100" required>
+        </label>
+        <br>
+        <label>
+            Especialitat
+            <input id="especialitatName" type="text" placeholder="Nom especialitat" width="100" required>
+        </label>
+        <br>
+        <label>
+            Ordenar per Codi postal
+            <input id="postalCode" type="number" placeholder="46020" width="100" required>
+        </label>
+        <br>
+        <button type="submit" id="run_btn">Run!</button>
+    </form>
     <script src="popup.js"></script>
 </body>
 
