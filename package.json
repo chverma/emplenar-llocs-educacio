@@ -14,6 +14,9 @@
     "bugs": {
         "url": "http://github.com/chverma/emplenar-llocs-educacio/issues"
     },
+    "dependencies": {
+        "web-ext": "^6.6.0"
+    },
     "author": "chverma",
     "license": "MPL-2.0"
 }
