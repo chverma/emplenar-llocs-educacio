@@ -1,19 +1,18 @@
 function init() {
     console.log("init1")
-    chrome.storage.local.get('options')
-    .then(res => {
+    chrome.storage.local.get('options', res => {
         var espName = res.options.espName;
         var espCode = res.options.espCode;
         var postalCode = res.options.postalCode;
 
         getAllPlaces(postalCode, espCode, espName)
     })
-    
+
 }
 
 // Querying center places from postalCode
 function getAllPlaces(postalCode, espCode, espName) {
-    let url = `http://decasaalcole.cartodb.com/api/v2/sql?q=with ftimes as (select cp_to cp, from_dist dist, from_time atime from times where cp_from = '${postalCode}'), ttimes as (select cp_from cp, to_dist dist, to_time atime from times where cp_to = '${postalCode}'), totaltimes as (select * from ftimes union select * from ttimes union select '${postalCode}' cp, 0 dist, 0 atime) select c.cartodb_id, c.the_geom, ST_astext(c.the_geom) as tgeom, c.the_geom_webmercator, c.regimen, c.dgenerica, c.dabreviada, c.localidad, c.tipocalle, c.direccion, c.numero, c.codigo, ((t.atime)/60)::integer minutes, (t.dist/1000)::integer kms from coles_cp2 c join totaltimes t on c.cp = t.cp WHERE regimen = true AND ( nived like '%25F%25' or nived like '%25E%25' or nived like '%25D%25' ) order by t.atime, t.dist`
+    let url = `https://decasaalcole.cartodb.com/api/v2/sql?q=with ftimes as (select cp_to cp, from_dist dist, from_time atime from times where cp_from = '${postalCode}'), ttimes as (select cp_from cp, to_dist dist, to_time atime from times where cp_to = '${postalCode}'), totaltimes as (select * from ftimes union select * from ttimes union select '${postalCode}' cp, 0 dist, 0 atime) select c.cartodb_id, c.the_geom, ST_astext(c.the_geom) as tgeom, c.the_geom_webmercator, c.regimen, c.dgenerica, c.dabreviada, c.localidad, c.tipocalle, c.direccion, c.numero, c.codigo, ((t.atime)/60)::integer minutes, (t.dist/1000)::integer kms from coles_cp2 c join totaltimes t on c.cp = t.cp WHERE regimen = true AND ( nived like '%25F%25' or nived like '%25E%25' or nived like '%25D%25' ) order by t.atime, t.dist`
     var xmlhttp = new XMLHttpRequest();
 
     xmlhttp.onreadystatechange = function () {
@@ -83,8 +82,10 @@ function verificarCentro(cod, span) {
                 var parser = new DOMParser();
                 var doc = parser.parseFromString(xmlhttp.responseText, "application/xml");
                 //console.log(doc.documentElement.children[3].innerHTML)
-                centerName = doc.documentElement.children[3].innerHTML
-                span.innerText = centerName
+                if (doc.documentElement.children[3]) {
+                    centerName = doc.documentElement.children[3].innerHTML;
+                    span.innerText = centerName;
+                }
             } else if (xmlhttp.status == 400) {
                 alert('There was an error 400');
             } else {

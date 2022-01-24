@@ -23,17 +23,13 @@ function checkRequiredInput() {
 function setItem() {
     let tabID = -1;
     // Querying browser tab
-    let querying = browser.tabs.query({ currentWindow: true, active: true });
-    querying.then(logTabs, onError).then(() => {
-
-        // Executing script
-        const executing = browser.tabs.executeScript(tabID, {
-            file: "/fillPlaces.js"
-
-        });
-        executing.then(onExecuted, onError);
-
-    });
+    return chrome.tabs.query({ currentWindow: true, active: true }, (tabs) => {
+            console.log(tabs)
+            // Executing script
+            return chrome.tabs.executeScript(tabs[0].id, {
+                file: "/fillPlaces.js"
+            });
+        })
 
     function logTabs(tabs) {
         tabID = tabs[0].id;
@@ -49,7 +45,8 @@ function setItem() {
     }
 }
 // Run button on click
-document.querySelector('#run_btn').addEventListener('click', () => {
+document.querySelector('#run_btn').addEventListener('click', (e) => {
+    e.preventDefault();
     return checkRequiredInput()
 
 });
